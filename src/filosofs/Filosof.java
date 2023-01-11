@@ -22,7 +22,6 @@ public class Filosof extends Thread {
     }
 
     private void menjar() {
-
         //synchronized (dead) {
         lock.lock();
             cobert1.agafar();
