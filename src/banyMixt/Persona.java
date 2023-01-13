@@ -1,7 +1,5 @@
 package banyMixt;
 
-import filosofs.Cobert;
-
 public class Persona extends Thread{
     public enum TipusPersona {
         HOME, DONA, NEN;
@@ -24,9 +22,7 @@ public class Persona extends Thread{
     }
 
     private void anarAlLavabo() {
-        System.out.println(bany.tipus);
-        System.out.println("*************************+");
-        bany.entrar(tipus);
+        bany.entrar(this);
         System.out.printf("%s està pixant\n", getName());
         try {
             Thread.sleep((long) (Math.random() * 150) + 50);
@@ -43,5 +39,9 @@ public class Persona extends Thread{
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public TipusPersona getTipus() {
+        return tipus;
     }
 }

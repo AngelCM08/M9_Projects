@@ -9,18 +9,26 @@ public class Lavabo {
         gentDins = 0;
     }
 
-    public synchronized void entrar(Persona.TipusPersona tipusPersona) {
-        if(gentDins == 0){
-            tipus = tipusPersona;
-            gentDins++;
-            notifyAll();
-        } else if (tipusPersona == tipus) {
-            gentDins++;
-        } else {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+    public synchronized void entrar(Persona persona) {
+        while(true){
+            if(gentDins == 0){
+                tipus = persona.getTipus();
+                System.out.println("*************************+");
+                System.out.println(tipus);
+                System.out.println("*************************+");
+                gentDins++;
+                notifyAll();
+                break;
+            } else if (persona.getTipus() == tipus) {
+                gentDins++;
+                break;
+            } else {
+                try {
+                    System.out.println(persona.getName()+ " esperant...");
+                    wait();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -29,7 +37,6 @@ public class Lavabo {
         if(gentDins == 1){
             gentDins--;
             tipus = null;
-            System.out.println("Tipo actual: "+tipus);
             notifyAll();
         }else{
             gentDins--;
