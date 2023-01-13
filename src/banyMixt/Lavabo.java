@@ -19,7 +19,7 @@ public class Lavabo {
                 gentDins++;
                 notifyAll();
                 break;
-            } else if (persona.getTipus() == tipus) {
+            } else if (persona.getTipus() == tipus && gentDins == MAX) {
                 gentDins++;
                 break;
             } else {
