@@ -45,7 +45,7 @@ public class Exercicis {
         }
     }
     public static void main(String[] args) throws MalformedURLException {
-        //Exercicis.exerciciA(new URL(args[0]), args[1]);
+        Exercicis.exerciciA(new URL(args[0]), args[1]);
         Exercicis.exerciciB("Ángel Castro", "Si");
     }
 }
