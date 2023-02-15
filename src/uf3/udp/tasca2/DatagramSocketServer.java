@@ -1,4 +1,4 @@
-package uf3.udp;
+package uf3.udp.tasca2;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -9,6 +9,7 @@ import java.net.SocketException;
 public class DatagramSocketServer {
     DatagramSocket socket;
     String msg;
+    SecretNum sn;
 
     public static void main(String[] args) throws IOException {
         DatagramSocketServer dss = new DatagramSocketServer();
@@ -18,6 +19,7 @@ public class DatagramSocketServer {
 
     public void init(int port) throws SocketException {
         socket = new DatagramSocket(port);
+        sn.pensa(100);
     }
 
     public void runServer() throws IOException {
@@ -54,6 +56,7 @@ public class DatagramSocketServer {
     private byte[] processData(byte[] data, int length) {
         msg = new String(data, 0, length);
         System.out.println("Packet interceptat: " + msg);
+
         return msg.toUpperCase().getBytes();
     }
 }

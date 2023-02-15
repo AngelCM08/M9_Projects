@@ -1,7 +1,9 @@
-package uf3.udp;
+package uf3.udp.tasca1;
 
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.util.Scanner;
 
 public class DatagramSocketClient {
