@@ -5,11 +5,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.nio.ByteBuffer;
 
 public class DatagramSocketServer {
     DatagramSocket socket;
     String msg;
-    SecretNum sn;
+    SecretNum sn = new SecretNum();
 
     public static void main(String[] args) throws IOException {
         DatagramSocketServer dss = new DatagramSocketServer();
@@ -19,7 +20,7 @@ public class DatagramSocketServer {
 
     public void init(int port) throws SocketException {
         socket = new DatagramSocket(port);
-        sn.pensa(100);
+        sn.pensa(10);
     }
 
     public void runServer() throws IOException {
@@ -57,6 +58,6 @@ public class DatagramSocketServer {
         msg = new String(data, 0, length);
         System.out.println("Packet interceptat: " + msg);
 
-        return msg.toUpperCase().getBytes();
+        return ByteBuffer.allocate(4).putInt(sn.comprova(ByteBuffer.wrap(data).getInt())).array();
     }
 }
